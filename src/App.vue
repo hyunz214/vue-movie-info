@@ -1,6 +1,6 @@
 <template>
     <Navbar />
-    <Event :text="text" />
+    <Event :text="text[eventTextNum]" />
     <p>
         <button @click="showAllMovie">전체보기</button>
     </p>
@@ -25,7 +25,9 @@ export default {
             data: data, //원본
             data_temp: [...data], //사본
             selectedMovieIndex: 0,
-            text: "NETPLIX 강렬한 운명의 드라마, 경성크리처",
+            text: ["NETPLIX 강렬한 운명의 드라마, 경성크리처", "디즈니 100주년 기념작, 위시", "그날, 대한민국의 운명이 바뀌었다, 서울의 봄"],
+            eventTextNum: 0,
+            interval: null,
         };
     },
     components: {
@@ -55,6 +57,18 @@ export default {
         showAllMovie() {
             this.data_temp = [...this.data];
         },
+    },
+    mounted() {
+        this.interval = setInterval(() => {
+            if (this.eventTextNum == this.text.length - 1) {
+                this.eventTextNum = 0;
+            } else {
+                this.eventTextNum += 1;
+            }
+        }, 3000);
+    },
+    unmounted() {
+        clearInterval(this.interval);
     },
 };
 </script>
