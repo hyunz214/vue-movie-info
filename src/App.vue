@@ -26,16 +26,14 @@
 </template>
 
 <script>
+import data from "./assets/datas/movies";
+
 export default {
     name: "App",
     data() {
         return {
             isModal: false,
-            data: [
-                { title: "3일의휴가", year: 2023, category: "힐링", like: 0, imgUrl: require("./assets/images/3일의휴가.jpg") },
-                { title: "노량", year: 2023, category: "액션, 드라마", like: 0, imgUrl: require("./assets/images/노량.jpg") },
-                { title: "아쿠아맨", year: 2023, category: "액션, 판타지, 어드벤처", like: 0, imgUrl: require("./assets/images/아쿠아맨.jpg") },
-            ],
+            data: data,
         };
     },
     methods: {
