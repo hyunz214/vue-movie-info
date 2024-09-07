@@ -12,14 +12,17 @@
             <button @:click="increaseLike(i)">좋아요</button>
             <span>{{ movie.like }}</span>
             <p>
-                <button @:click="isModal = true">상세보기</button>
+                <button @:click="openModal(i)">상세보기</button>
             </p>
         </div>
     </div>
     <div class="modal" v-if="isModal">
         <div class="inner">
-            <h3>Detail</h3>
-            <p>영화 상세 정보</p>
+            <div>
+                <h3>{{ data[selectedMovieIndex].title }}</h3>
+                <p>장르: {{ data[selectedMovieIndex].category }}</p>
+                <span>좋아요: {{ data[selectedMovieIndex].like }}</span>
+            </div>
             <button @:click="isModal = false">닫기</button>
         </div>
     </div>
@@ -34,11 +37,16 @@ export default {
         return {
             isModal: false,
             data: data,
+            selectedMovieIndex: 0,
         };
     },
     methods: {
         increaseLike(i) {
             this.data[i].like += 1;
+        },
+        openModal(i) {
+            this.selectedMovieIndex = i;
+            this.isModal = true;
         },
     },
 };
