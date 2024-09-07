@@ -1,22 +1,7 @@
 <template>
     <Navbar />
     <Event :text="text" />
-    <h1>영화 정보</h1>
-    <div v-for="(movie, i) in data" :key="i" class="item">
-        <figure>
-            <img :src="movie.imgUrl" :alt="movie.title" />
-        </figure>
-        <div class="info">
-            <h3 class="bg-yellow">{{ movie.title }}</h3>
-            <p>개봉: {{ movie.year }}</p>
-            <p>장르: {{ movie.category }}</p>
-            <button @:click="increaseLike(i)">좋아요</button>
-            <span>{{ movie.like }}</span>
-            <p>
-                <button @:click="openModal(i)">상세보기</button>
-            </p>
-        </div>
-    </div>
+    <Movies :data="data" @increaseLike="increaseLike" @openModal="openModal" />
     <Modal :isModal="isModal" :data="data" :selectedMovieIndex="selectedMovieIndex" @closeModal="isModal = false" />
 </template>
 
@@ -25,6 +10,7 @@ import data from "./assets/datas/movies";
 import Navbar from "./components/Navbar.vue";
 import Event from "./components/Event.vue";
 import Modal from "./components/Modal.vue";
+import Movies from "./components/Movies.vue";
 
 export default {
     name: "App",
@@ -40,6 +26,7 @@ export default {
         Navbar: Navbar,
         Event: Event,
         Modal: Modal,
+        Movies: Movies,
     },
     methods: {
         increaseLike(i) {
