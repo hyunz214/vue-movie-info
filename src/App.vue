@@ -1,6 +1,7 @@
 <template>
+    <Navbar />
+    <Event :text="text" />
     <h1>영화 정보</h1>
-
     <div v-for="(movie, i) in data" :key="i" class="item">
         <figure>
             <img :src="movie.imgUrl" :alt="movie.title" />
@@ -30,6 +31,9 @@
 
 <script>
 import data from "./assets/datas/movies";
+import Navbar from "./components/Navbar.vue";
+import Event from "./components/Event.vue";
+// import Modal from "./components/Modal.vue";
 
 export default {
     name: "App",
@@ -38,7 +42,12 @@ export default {
             isModal: false,
             data: data,
             selectedMovieIndex: 0,
+            text: "NETPLIX 강렬한 운명의 드라마, 경성크리처",
         };
+    },
+    components: {
+        Navbar: Navbar,
+        Event: Event,
     },
     methods: {
         increaseLike(i) {
