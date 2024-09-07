@@ -1,8 +1,11 @@
 <template>
     <Navbar />
-    <SearchBar />
     <Event :text="text" />
-    <Movies :data="data" @increaseLike="increaseLike" @openModal="openModal" />
+    <p>
+        <button @click="showAllMovie">전체보기</button>
+    </p>
+    <SearchBar :data="data_temp" @searchMovie="searchMovie($event)" />
+    <Movies :data="data_temp" @increaseLike="increaseLike" @openModal="openModal" />
     <Modal :isModal="isModal" :data="data" :selectedMovieIndex="selectedMovieIndex" @closeModal="isModal = false" />
 </template>
 
@@ -19,7 +22,8 @@ export default {
     data() {
         return {
             isModal: false,
-            data: data,
+            data: data, //원본
+            data_temp: [...data], //사본
             selectedMovieIndex: 0,
             text: "NETPLIX 강렬한 운명의 드라마, 경성크리처",
         };
@@ -38,6 +42,14 @@ export default {
         openModal(i) {
             this.selectedMovieIndex = i;
             this.isModal = true;
+        },
+        searchMovie(title) {
+            this.data_temp = this.data.filter((movie) => {
+                return movie.title.includes(title);
+            });
+        },
+        showAllMovie() {
+            this.data_temp = [...this.data];
         },
     },
 };
