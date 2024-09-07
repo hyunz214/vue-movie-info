@@ -17,23 +17,14 @@
             </p>
         </div>
     </div>
-    <div class="modal" v-if="isModal">
-        <div class="inner">
-            <div>
-                <h3>{{ data[selectedMovieIndex].title }}</h3>
-                <p>장르: {{ data[selectedMovieIndex].category }}</p>
-                <span>좋아요: {{ data[selectedMovieIndex].like }}</span>
-            </div>
-            <button @:click="isModal = false">닫기</button>
-        </div>
-    </div>
+    <Modal :isModal="isModal" :data="data" :selectedMovieIndex="selectedMovieIndex" @closeModal="isModal = false" />
 </template>
 
 <script>
 import data from "./assets/datas/movies";
 import Navbar from "./components/Navbar.vue";
 import Event from "./components/Event.vue";
-// import Modal from "./components/Modal.vue";
+import Modal from "./components/Modal.vue";
 
 export default {
     name: "App",
@@ -48,6 +39,7 @@ export default {
     components: {
         Navbar: Navbar,
         Event: Event,
+        Modal: Modal,
     },
     methods: {
         increaseLike(i) {

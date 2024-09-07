@@ -6,13 +6,18 @@
                 <p>장르: {{ data[selectedMovieIndex].category }}</p>
                 <span>좋아요: {{ data[selectedMovieIndex].like }}</span>
             </div>
-            <button @:click="isModal = false">닫기</button>
+            <button @:click="$emit('closeModal')">닫기</button>
         </div>
     </div>
 </template>
 <script>
 export default {
     name: "ModalComponent",
+    props: {
+        isModal: Boolean,
+        selectedMovieIndex: Number,
+        data: Array,
+    },
 };
 </script>
 <style></style>
