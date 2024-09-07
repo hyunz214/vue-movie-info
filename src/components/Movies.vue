@@ -9,7 +9,7 @@
                 <h3 class="bg-yellow">{{ movie.title }}</h3>
                 <p>개봉: {{ movie.year }}</p>
                 <p>장르: {{ movie.category }}</p>
-                <button @:click="$emit('increaseLike', i)">좋아요</button>
+                <button @:click="$emit('increaseLike', movie.id)">좋아요</button>
                 <span>{{ movie.like }}</span>
                 <p>
                     <button @:click="$emit('openModal', i)">상세보기</button>

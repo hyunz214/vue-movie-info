@@ -6,7 +6,7 @@
     </p>
     <SearchBar :data="data_temp" @searchMovie="searchMovie($event)" />
     <Movies :data="data_temp" @increaseLike="increaseLike" @openModal="openModal" />
-    <Modal :isModal="isModal" :data="data" :selectedMovieIndex="selectedMovieIndex" @closeModal="isModal = false" />
+    <Modal :isModal="isModal" :data="data_temp" :selectedMovieIndex="selectedMovieIndex" @closeModal="isModal = false" />
 </template>
 
 <script>
@@ -36,8 +36,12 @@ export default {
         SearchBar: SearchBar,
     },
     methods: {
-        increaseLike(i) {
-            this.data[i].like += 1;
+        increaseLike(id) {
+            this.data.find((movie) => {
+                if (movie.id === id) {
+                    movie.like += 1;
+                }
+            });
         },
         openModal(i) {
             this.selectedMovieIndex = i;
