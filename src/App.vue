@@ -1,5 +1,6 @@
 <template>
     <Navbar />
+    <SearchBar />
     <Event :text="text" />
     <Movies :data="data" @increaseLike="increaseLike" @openModal="openModal" />
     <Modal :isModal="isModal" :data="data" :selectedMovieIndex="selectedMovieIndex" @closeModal="isModal = false" />
@@ -11,6 +12,7 @@ import Navbar from "./components/Navbar.vue";
 import Event from "./components/Event.vue";
 import Modal from "./components/Modal.vue";
 import Movies from "./components/Movies.vue";
+import SearchBar from "./components/SearchBar.vue";
 
 export default {
     name: "App",
@@ -27,6 +29,7 @@ export default {
         Event: Event,
         Modal: Modal,
         Movies: Movies,
+        SearchBar: SearchBar,
     },
     methods: {
         increaseLike(i) {
